@@ -364,11 +364,11 @@ The logging options are: `plugin`, `directive`, `service` and `dragHandler`
 
 Logging is essential in development mode!!
 
-### Customis DragulaService
+### Customise DragulaService
 You can also subclass `DragulaService` or create your own, then pass a `createService` option for you install the plugin:
 
 ```js
-import { DragulaService } from 'vue-dragula'
+import { DragulaService } from 'vue2-dragula'
 
 class MyDragulaService extends DragulaService {
   /// ...
