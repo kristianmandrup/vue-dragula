@@ -50,13 +50,15 @@ Vue.use(Vue2Dragula, {
 <div class="wrapper">
   <div class="container" v-dragula="colOne" drake="first">
     <!-- with click -->
-    <div v-for="text in colOne" @click="onClick">{{text}} [click me]</div>
+    <div v-for="text in colOne" :key="text" @click="onClick">{{text}} [click me]</div>
   </div>
   <div class="container" v-dragula="colTwo" drake="first">
-    <div v-for="text in colTwo">{{text}}</div>
+    <div v-for="text in colTwo" :key="text">{{text}}</div>
   </div>
 </div>
 ```
+
+**NOTE**: Since Vue 2.x, having the `:key` attribute when using `v-for` is **reqired**.
 
 ## API
 You can access the global app service via `Vue.$dragula.$service` or from within a component via `this.$dragula.$service`.
