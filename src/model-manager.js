@@ -1,5 +1,4 @@
-
-import { BaseModelManager } from 'base-model-manager'
+import { BaseModelManager } from './base-model-manager'
 
 export class ModelManager extends BaseModelManager {
   constructor (opts = {}) {

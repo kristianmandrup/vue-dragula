@@ -20,7 +20,14 @@ rollup.rollup({
   plugins: [
     nodeResolve(),
     commonjs(),
-    babel()
+    babel({
+      externalHelpersWhitelist: [
+        'createClass',
+        'classCallCheck',
+        'inherits',
+        'possibleConstructorReturn'
+      ]
+    })
   ]
 })
 .then(function (bundle) {
