@@ -123,13 +123,11 @@ export class DragulaService {
   // convenience to set eventBus handlers via Object
   on (handlerConfig = {}) {
     this.log('on (events) ', handlerConfig)
-    let handlerNames = Object.keys(handlerConfig)
-
-    for (let handlerName of handlerNames) {
+    Object.keys(handlerConfig).forEach(handlerName => {
       let handlerFunction = handlerConfig[handlerName]
       this.log('$on', handlerName, handlerFunction)
       this.eventBus.$on(handlerName, handlerFunction)
-    }
+    })
   }
 
   destroy (name) {

@@ -119,7 +119,7 @@ export default function (Vue, options = {}) {
       }
 
       logServiceConfig('names', names)
-      for (let name of names) {
+      names.forEach(name => {
         let createOpts = {
           name,
           eventBus,
@@ -134,7 +134,7 @@ export default function (Vue, options = {}) {
         }
 
         this.drakesFor(name, drakes)
-      }
+      })
       return this
     }
 
@@ -150,15 +150,14 @@ export default function (Vue, options = {}) {
         }, {})
       }
 
-      let drakeNames = Object.keys(drakes)
-      for (let drakeName of drakeNames) {
+      Object.keys(drakes).forEach(drakeName => {
         let drakeOpts = drakes[drakeName]
         if (drakeOpts === true) {
           drakeOpts = {}
         }
 
         service.setOptions(drakeName, drakeOpts)
-      }
+      })
       return this
     }
 
@@ -175,9 +174,9 @@ export default function (Vue, options = {}) {
         }
 
         logServiceConfig('add event handlers for', serviceNames)
-        for (let serviceName of serviceNames) {
+        serviceNames.forEach(serviceName => {
           this.on(serviceName, handlerConfig)
-        }
+        })
         return this
       }
 

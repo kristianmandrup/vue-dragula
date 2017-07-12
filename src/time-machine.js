@@ -37,9 +37,9 @@ export class TimeMachine {
     // this.modelRef = mutable
     // this.log('set modelRef', this.modelRef, this.model)
     this.modelRef.splice(0, this.modelRef.length)
-    for (let item of this.model) {
+    this.model.forEach(item => {
       this.modelRef.push(item)
-    }
+    })
   }
 
   undo () {
