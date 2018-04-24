@@ -118,6 +118,12 @@ Vue.use(Vue2Dragula, {
 });
 ```
 
+[Dragula's CSS](https://github.com/bevacqua/dragula/blob/master/dist/dragula.css), which provides visual feedback for drag effects, is not included in this package and must be imported or provided in your app.
+
+```js
+import 'dragula/dist/dragula.css'
+```
+
 ## Documentation
 
 For additional documentation, see the [docs folder](https://github.com/kristianmandrup/vue2-dragula/tree/master/docs)
