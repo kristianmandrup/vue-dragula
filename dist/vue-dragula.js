@@ -2265,7 +2265,7 @@ var require$$0$3 = Object.freeze({
 	        var handlerConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	        logServiceConfig('on', name, handlerConfig);
-	        if ((typeof name === 'undefined' ? 'undefined' : _typeof(name)) === 'object') {
+	        if ((typeof name === 'undefined' ? 'undefined' : typeof name) === 'object') {
 	          handlerConfig = name;
 	          // add event handlers for all services
 	          var serviceNames = this.serviceNames;
