@@ -117,9 +117,11 @@ export class DragHandler {
    * If not copy, we remove model from source model after a nice transition
    */
   notCopy() {
-    waitForTransition(() => {
+    // This transition poses a problem in dropModel handlers - because if we try to use the model 
+    // inside such a handler - the model has not been updated yet because of this waiting for transition 
+    //waitForTransition(() => {
       this.sourceModel.removeAt(this.dragIndex)
-    })
+    //})
   }
 
   /**
@@ -152,6 +154,11 @@ export class DragHandler {
     let targetModel = this.getModel(target)
     let dropElmModel = notCopy ? this.dropElmModel() : this.jsonDropElmModel()
 
+    // we have to cancel the drop to prevent discrepancy between VirtualDOM and actual DOM
+    // otherwise when we update the models and Vue tries to re-render it will be confused when not
+    // finding the dragged node where Vue expects to find it
+    this.drake.cancel(true); 
+    
     if (notCopy) {
       this.notCopy()
     }

@@ -59,7 +59,7 @@ export class ModelManager extends BaseModelManager {
       splicedModel,
       removedModel
     })
-    return splicedModel
+    return removedModel
   }
 
   insertAt(index, insertModel) {

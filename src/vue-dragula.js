@@ -249,16 +249,19 @@ export default function (Vue, options = {}) {
   function calcNames(name, vnode, ctx) {
     let drakeName = vnode ? vnode.data.attrs.drake : this.params.drake
     const serviceName = vnode ? vnode.data.attrs.service : this.params.service
+    let drakeOptions = vnode ? vnode.data.attrs.options : this.params.options
 
     if (drakeName !== undefined && drakeName.length !== 0) {
       name = drakeName
     }
     drakeName = isEmpty(drakeName) ? 'default' : drakeName
+    if (!drakeOptions) drakeOptions = {}
 
     return {
       name,
       drakeName,
-      serviceName
+      serviceName,
+      drakeOptions
     }
   }
 
@@ -332,7 +335,7 @@ export default function (Vue, options = {}) {
   }
 
   Vue.directive('dragula', {
-    params: ['drake', 'service'],
+    params: ['drake', 'service', 'options'],
 
     bind(container, binding, vnode) {
       logDir('BIND', container, binding, vnode)
@@ -340,7 +343,8 @@ export default function (Vue, options = {}) {
       const {
         name,
         drakeName,
-        serviceName
+        serviceName,
+        drakeOptions
       } = calcNames(globalName, vnode, this)
       const service = findService(name, vnode, serviceName)
       const drake = service.find(drakeName, vnode)
@@ -365,9 +369,8 @@ export default function (Vue, options = {}) {
         drake.containers.push(container)
         return
       }
-      let newDrake = dragula({
-        containers: [container]
-      })
+      drakeOptions.containers = [container]
+      let newDrake = dragula(drakeOptions)
       service.add(name, newDrake)
 
       service.handleModels(name, newDrake)
